@@ -1,5 +1,5 @@
 
-package com;
+package java;
 
 import java.sql.Statement;
 import java.sql.Connection;
