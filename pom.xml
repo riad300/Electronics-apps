@@ -8,13 +8,12 @@
   <artifactId>EcommerceApp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <!-- এটা WAR app -->
+  <!-- WAR app -->
   <packaging>war</packaging>
 
   <name>EcommerceApp Maven Webapp</name>
 
   <properties>
-    <!-- Railway/modern env এর জন্য stable -->
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -84,13 +83,15 @@
     <finalName>EcommerceApp</finalName>
 
     <plugins>
-      <!-- Ensures war build properly -->
+
+      <!-- WAR build: ensures web resources (src/main/webapp) go into the WAR -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.4.0</version>
         <configuration>
           <failOnMissingWebXml>false</failOnMissingWebXml>
+          <warSourceDirectory>src/main/webapp</warSourceDirectory>
         </configuration>
       </plugin>
 
@@ -102,8 +103,10 @@
         <configuration>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
         </configuration>
       </plugin>
+
     </plugins>
 
   </build>
