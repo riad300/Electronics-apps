@@ -11,8 +11,8 @@ RUN mvn -B -DskipTests clean package
 
 # ---------- Run stage ----------
 FROM tomcat:9-jdk17-temurin
-
 RUN rm -rf /usr/local/tomcat/webapps/*
+
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
