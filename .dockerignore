@@ -1,0 +1,6 @@
+.git
+target
+**/target
+.settings
+.DS_Store
+mydatabase.db
