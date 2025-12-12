@@ -2,15 +2,17 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
+# 1) cache dependencies
 COPY pom.xml .
-COPY src ./src
+RUN mvn -q -DskipTests dependency:go-offline
 
-RUN mvn clean package -DskipTests
+# 2) then copy source and build
+COPY src ./src
+RUN mvn -DskipTests clean package
 
 
 # ---------- Run stage ----------
 FROM tomcat:9-jdk21-temurin
-
 RUN rm -rf /usr/local/tomcat/webapps/*
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 
